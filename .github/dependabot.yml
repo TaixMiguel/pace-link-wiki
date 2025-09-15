@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # Maintain dependencies for python
+  - open-pull-requests-limit: 5
+    package-ecosystem: "pip"
+    rebase-strategy: "auto"
+    target-branch: "main"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      timezone: "UTC"
+      time: "03:00"
+    groups:
+      gradle-deps:
+        patterns:
+          - "*"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    directory: "/.github"
+    target-branch: "main"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      timezone: "UTC"
+      time: "03:00"
+    groups:
+      ghactions:
+        patterns:
+          - "*"
