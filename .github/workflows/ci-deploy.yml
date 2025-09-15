@@ -3,20 +3,24 @@ on:
   push:
     branches:
       - main
-      - devops/deploy
+    paths:
+      - 'PaceLink-wiki/**'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+
     - name: Install MkDocs and GitHub Pages
       run: |
         pip install mkdocs mkdocs-material ghp-import
@@ -25,5 +29,6 @@ jobs:
         cd PaceLink-wiki
         mkdocs build
         ghp-import -n -f -p -b gh-pages site
+
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
