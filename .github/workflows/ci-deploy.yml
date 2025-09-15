@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - main
+      - devops/deploy
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -21,5 +25,3 @@ jobs:
         cd PaceLink-wiki
         mkdocs build
         ghp-import -n -p -b gh-pages site
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
