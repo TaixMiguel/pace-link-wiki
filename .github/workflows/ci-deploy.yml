@@ -18,6 +18,7 @@ jobs:
         pip install mkdocs mkdocs-material ghp-import
     - name: Build and deploy
       run: |
+        cd PaceLink-wiki
         mkdocs build
         ghp-import -n -p -b gh-pages site
       env:
