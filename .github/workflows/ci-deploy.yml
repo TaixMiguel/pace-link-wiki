@@ -24,4 +24,6 @@ jobs:
       run: |
         cd PaceLink-wiki
         mkdocs build
-        ghp-import -n -p -b gh-pages site
+        ghp-import -n -f -p -b gh-pages site
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
